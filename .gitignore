@@ -1,0 +1,15 @@
+**/*.o
+**/*.cmd
+**/*.ko
+**/*.mod.c
+**/.tmp_versions
+**/*.o.ur-safe
+**/*.symvers
+**/*.order
+**/.cache.mk
+**/.mhi*
+**/.built-in*
+**/built-in.a
+**/*.mod
+**/.*.cmd
+**/.*.d
