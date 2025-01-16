@@ -26,8 +26,8 @@ if [ ! -z "$APN" ] ; then
 	echo "Waiting for conneciton to come up..."
 	sleep 5
 	$SUDO nmcli con show
+	true
 else
 	echo "APN cannot be blank, doing nothing!"
+	false
 fi
-
-
