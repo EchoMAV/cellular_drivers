@@ -6,28 +6,28 @@ UDEV_RULESD=/etc/udev/rules.d
 
 APN="teal"
 
-opstr+="a:-:";
+opstr+="a:-:"
 while getopts "${opstr}" OPTION; do
-	case $OPTION in
-	-) case ${OPTARG} in
-		apn)
-		APN="${!OPTIND}";
-		OPTIND=$(($OPTIND + 1));
-		;;
-		esac;;
-	esac;
+  case $OPTION in
+  -) case ${OPTARG} in
+    apn)
+      APN="${!OPTIND}"
+      OPTIND=$(($OPTIND + 1))
+      ;;
+    esac ;;
+  esac
 done
 
-if [ ! -z "$APN" ] ; then
-	echo "Removing existing network manager profile for Cellular..."
-	$SUDO nmcli con delete 'Cellular'
-	echo "Adding network manager profile for Cellular..."
-	$SUDO nmcli connection add type gsm ifname cdc-wdm0 con-name "Cellular" apn "$APN" connection.autoconnect yes	
-	echo "Waiting for conneciton to come up..."
-	sleep 5
-	$SUDO nmcli con show
-	true
+if [ ! -z "$APN" ]; then
+  echo "Removing existing network manager profile for Cellular..."
+  $SUDO nmcli con delete 'Cellular'
+  echo "Adding network manager profile for Cellular..."
+  $SUDO nmcli connection add type gsm ifname cdc-wdm0 con-name "Cellular" apn "$APN" connection.autoconnect yes
+  echo "Waiting for conneciton to come up..."
+  sleep 5
+  $SUDO nmcli con show
+  true
 else
-	echo "APN cannot be blank, doing nothing!"
-	false
+  echo "APN cannot be blank, doing nothing!"
+  false
 fi
