@@ -1,6 +1,10 @@
 #!/bin/bash
 
 SUDO=$(test ${EUID} -ne 0 && which sudo)
+
+# exit on any error
+set -e
+
 SYSCFG=/etc/systemd
 UDEV_RULESD=/etc/udev/rules.d
 
@@ -49,8 +53,7 @@ method=auto
     $SUDO nmcli connection add type gsm ifname cdc-wdm0 con-name "Cellular" apn "$APN" connection.autoconnect yes
     echo "Waiting for conneciton to come up..."
     sleep 5
-    $SUDO nmcli con show
-    true
+    $SUDO nmcli con show || true
   fi
 else
   echo "APN cannot be blank, doing nothing!"
