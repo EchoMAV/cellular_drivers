@@ -48,7 +48,7 @@ method=auto
     $SUDO chmod 600 /etc/NetworkManager/system-connections/Cellular.nmconnection
   else
     echo "Removing existing network manager profile for Cellular..."
-    $SUDO nmcli con delete 'Cellular'
+    $SUDO nmcli con delete 'Cellular' || true
     echo "Adding network manager profile for Cellular..."
     $SUDO nmcli connection add type gsm ifname cdc-wdm0 con-name "Cellular" apn "$APN" connection.autoconnect yes
     echo "Waiting for conneciton to come up..."
