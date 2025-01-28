@@ -9,7 +9,7 @@ set -e
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 
 # install dependencies if necessary
-! command -v dkms &>/dev/null && $SUDO apt install --no-install-recommends -y dkms
+! command -v dkms &>/dev/null && $SUDO apt update && $SUDO apt install --no-install-recommends -y dkms
 
 # install sierra wireless USB driver. This is not strictly neccesary but may be required if all the interfaces are needed (DM, NMEA, AT), should show up as /dev/ttuUSB0, 1, 2
 echo "Building Sierra Wireless Driver..."
